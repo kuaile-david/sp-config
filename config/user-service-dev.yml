@@ -5,6 +5,9 @@
 spring:
   application:
     name: user-service
+  cloud:
+    config:
+      override-none: true
   rabbitmq:
     host: 192.168.64.140
     port: 5672
@@ -17,10 +20,12 @@ server:
 eureka:
   client:
     service-url:
-      defaultZone: http://eureka1:2001/eureka, http://eureka2:2002/eureka  
+      defaultZone: http://eureka1:2001/eureka  
 
 management:
   endpoints:
     web:
       exposure:
-        include: refresh
+        include: 
+        - refresh
+        - hystrix.stream
